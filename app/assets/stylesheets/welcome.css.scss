@@ -1,3 +1,38 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ p#index-title {
+   text-align: center;
+   font-size: 15px;
+   color: blue;
+ }
+
+  section {
+   background: #5998ff;
+   border-style: solid;
+   border-width: 5px;
+   margin: 5px 5px 5px 5px;
+   padding: 5px 5px 5px 5px;
+ }
+
+  .lists {
+   border: solid;
+   margin: 5px;
+   padding: 5px;
+   height: 200px;
+ }
+
+ .jumbotron {
+  background: url(image_path('coffee.jpg')) no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #f7f2ec !important
+
+}
+
+// .jumbotron h1{
+//   color: #f7f2ec !important
+// }
