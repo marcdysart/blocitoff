@@ -5,6 +5,6 @@
  <% end %>
 <p> The todo items will be listed here</p>
 
-<% @items.each do |item| %>
-  <%= render({ partial: 'items/item', locals: {item: item, list: @list} }) %>
-<% end %>
+<% @list.items.each do |item| %>
+ <%= render  partial: 'items/item', locals: {item: item} %>
+ <% end %>
