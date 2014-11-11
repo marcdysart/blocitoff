@@ -12,7 +12,7 @@ class ListsController < ApplicationController
   end
 
   def create
-     @list = List.new(params.require(:list).permit(:title))
+     @list = current_user.lists.build(params.require(:list).permit(:title))
      if @list.save
        flash[:notice] = "To-Do List was saved."
        redirect_to @list

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111181117) do
+ActiveRecord::Schema.define(version: 20141111185258) do
 
   create_table "items", force: true do |t|
     t.text     "body"
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20141111181117) do
     t.boolean  "destruct",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

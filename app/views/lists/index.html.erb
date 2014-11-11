@@ -4,6 +4,10 @@
      <div class="media-body">
        <h4 class="media-heading">
          <%= link_to list.title, list %>
+        <small>
+         submitted <%= time_ago_in_words(list.created_at) %> ago by <%= list.user.name %><br/>
+         <%= list.items.count %> To-Do Items
+       </small>
        </h4>
      </div>
    </div>
