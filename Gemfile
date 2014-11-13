@@ -56,3 +56,7 @@ gem 'figaro', '1.0'
  gem 'pundit'
 
  gem 'redcarpet'
+
+ group :test do
+  gem 'rspec-rails', '~> 3.1.0'
+end
