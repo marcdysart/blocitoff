@@ -1,9 +1,16 @@
 <h1>All To-Do Lists</h1>
+ <% if policy(List.new).create? %>
+ <%= link_to "New To-Do List", new_list_path, class: 'btn btn-success' %>
+ <% end %>
 <% @lists.each do |list| %>
      <div class="media">
      <div class="media-body">
        <h4 class="media-heading">
          <%= link_to list.title, list %>
+        <small>
+         submitted <%= time_ago_in_words(list.created_at) %> ago by <%= list.user.name %><br/>
+         <%= list.items.count %> To-Do Items
+       </small>
        </h4>
      </div>
    </div>

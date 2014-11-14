@@ -1,0 +1,30 @@
+ <%= form_for [list, item], remote: true do |f| %>
+  <% if list.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There are <%= pluralize(list.errors.count, "error") %>.</h4>
+      <ul>
+        <% list.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <form class="form-inline" role="form">
+    <div class="form-group">
+       <%= f.label :"Enter New Comment" %>
+       <div class="row">
+         <div class="col-xs-6">
+            <%= f.text_field :body, class: 'form-control', placeholder: "Enter Comment" %>
+        </div>
+        <div class="col-xs-2">
+          <%= f.submit "Save Comment", class: 'btn btn-default' %>
+        </div>
+        <div class="col-xs-4">
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+
+<% end %>

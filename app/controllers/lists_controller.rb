@@ -1,18 +1,22 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+    authorize @lists
   end
 
   def show
     @list = List.find(params[:id])
+    authorize @list
   end
 
   def new
     @list = List.new
+    authorize @list
   end
 
   def create
-     @list = List.new(params.require(:list).permit(:title))
+     @list = current_user.lists.build(list_params)
+     authorize @list
      if @list.save
        flash[:notice] = "To-Do List was saved."
        redirect_to @list
@@ -28,7 +32,8 @@ class ListsController < ApplicationController
 
    def update
      @list = List.find(params[:id])
-     if @list.update_attributes(params.require(:list).permit(:title))
+     authorize @list
+     if @list.update_attributes(list_params)
        flash[:notice] = "To-Do List was updated."
        redirect_to @list
      else
@@ -36,5 +41,11 @@ class ListsController < ApplicationController
        render :edit
      end
    end
+
+  private
+
+  def list_params
+    params.require(:list).permit(:title)
+  end
 
 end

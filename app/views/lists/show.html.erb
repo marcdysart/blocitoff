@@ -1,3 +1,10 @@
-<h1><%= @list.title %></h1>
+<h1><%= markdown @list.title %></h1>
+
+<% if policy(@list).edit? %>
  <%= link_to "Edit", edit_list_path(@list), class: 'btn btn-success' %>
+ <% end %>
 <p> The todo items will be listed here</p>
+
+<% @list.items.each do |item| %>
+ <%= render  partial: 'items/item', locals: {item: item} %>
+ <% end %>
