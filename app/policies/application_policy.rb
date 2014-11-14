@@ -35,6 +35,10 @@ class ApplicationPolicy
   def destroy?
     update?
   end
+  
+  def complete?
+    update?
+  end
 
   def scope
     record.class

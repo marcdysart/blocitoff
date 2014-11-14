@@ -19,3 +19,11 @@
 //     $('#item-' +<%= @item.id %>).css('color': 'red');
 //   }
 // });
+
+$('#item-complete' +<%= @item.id %>).change( function(){
+  if(this.checked){
+    $('#item-' +<%= @item.id %>).remove();
+    $('#js-table tbody').append("<%= escape_javascript(render(@item)) %>");
+    $('#item-' +<%= @item.id %>).css({"color": "red", "text-decoration": "line-through"});
+  }
+});
