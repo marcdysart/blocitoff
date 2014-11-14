@@ -4,4 +4,4 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 Rails.application.initialize!
 
-config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'
+# config.gem 'javan-whenever', :lib => false, :source => 'http://gems.github.com'

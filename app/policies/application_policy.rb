@@ -8,10 +8,12 @@ class ApplicationPolicy
 
   def index?
     false
+    user.present? && (record.user == user || user.admin?)
   end
 
   def show?
     scope.where(:id => record.id).exists?
+    user.present? && (record.user == user || user.admin?)
   end
 
   def create?
