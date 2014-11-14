@@ -1,8 +1,8 @@
 
   <div class='js-items'>
-      <table class="table table-hover">
+      <table id='js-table' class="table table-hover">
             <h1 class = "text-center"><%= markdown @list.title %>
-            <%= link_to "Edit List Name", edit_list_path(@list), class: 'btn btn-success' %>
+            <%= link_to "Edit List Name", edit_list_path(@list), class: 'btn btn-success' %></h1>
             <thead>
               <tr>
                 <th>Complete</th>
@@ -21,6 +21,7 @@
 
   <div class="new-item">
   <%= form_for [@list, @list.items.new], remote: true do |f| %>
+
   <% if @list.errors.any? %>
     <div class="alert alert-danger">
       <h4>There are <%= pluralize(list.errors.count, "error") %>.</h4>
@@ -46,9 +47,6 @@
         </div>
       </div>
     </div>
-
   </form>
-
-<% end %>
-
+ <% end %>
   </div>

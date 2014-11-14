@@ -1,10 +1,10 @@
 
-   <%= content_tag :div, class: 'media', id: "item-#{item.id}" do %>
+   <%= content_tag :tr, class: 'media', id: "item-#{item.id}" do %>
 
-      <tr>
+
         <td><%=  check_box_tag 'completed', "1", false, id: "item-#{item.id}" %></td>
         <td><%= markdown item.body  %></td>
-        <td><%= time_ago_in_words(item.destruction_time) %></td>
+        <td><%= time_ago_in_words(item.created_at+1.week) %></td>
         <td><% if policy(item).edit? %>
            <%= link_to "Edit", [item.list, item], method: :edit, remote: true %>
         <% end %>
@@ -13,6 +13,6 @@
           | <%= link_to "Delete", [item.list, item], method: :delete, remote: true %>
         <% end %>
         </td>
-      </tr>
+
 
   <% end %>

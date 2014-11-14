@@ -1,6 +1,9 @@
  <% if @item.valid? %>
-   $('.js-items').prepend("<%= escape_javascript(render(@item)) %>");
-    $('.new-item').html("<%= escape_javascript(render partial: 'items/form', locals: { list: @list, item: @new_item }) %>)");
+    $('#js-table tbody').prepend("<%= escape_javascript(render(@item)) %>");
+    $('.new-item').html("<%= escape_javascript(render partial: 'items/form', locals: { list: @list, item: @new_item }) %>");
  <% else %>
    $('.new-item').html("<%= escape_javascript(render partial: 'items/form', locals: { list: @list, item: @item }) %>");
  <% end %>
+
+
+// $('#js-table tbody').append('<tr />').children('tr.last').append("<%= escape_javascript(render(@item)) %>");
