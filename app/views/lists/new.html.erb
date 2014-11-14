@@ -1,0 +1,26 @@
+ <h1>New List</h1>
+
+ <div class="row">
+    <div class="col-md-4">
+     <p>Guidelines for Lists</p>
+     <ul>
+       <li>Make sure your to-do item can be done in 7 days</li>
+       <li>This item will be deleted after 7 days.</li>
+     </ul>
+   </div>
+
+   <div class="col-md-8">
+
+    <%  form_for @list do |f| %>
+      <div class="form-group">
+       <%= f.label :title %>
+       <%= f.text_field :title, class: 'form-control', placeholder: "Enter To-List title" %>
+     </div>
+
+        <div class="form-group">
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        </div>
+
+      <% end %>
+   </div>
+ </div>
