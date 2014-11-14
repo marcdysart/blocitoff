@@ -1,5 +1,14 @@
  <% if @item.destroyed? %>
-   $('#item-' +<%= @item.id %>).hide();
+  //  $('#item-' +<%= @item.id %>).hide();
+  $('#item-' +<%= @item.id %>).remove();
+  $('#js-table tbody').append("<%= escape_javascript(render(@item)) %>");
+  $('#item-' +<%= @item.id %>).css({"color": "red", "text-decoration": "line-through"});
  <% else %>
    $('#item-' +<%= @item.id %>).prepend("<div class='alert alert-error'><%= flash[:error] %></div>");
  <% end %>
+
+ $('#item-complete' +<%= @item.id %>).on('change', function(){
+   if(this.checked){
+     $('#item-' +<%= @item.id %>).css("color", "red");
+   }
+ });

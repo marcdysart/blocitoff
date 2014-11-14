@@ -2,7 +2,7 @@
    <%= content_tag :tr, class: 'media', id: "item-#{item.id}" do %>
 
 
-        <td><%=  check_box_tag 'completed', "1", false, id: "item-#{item.id}" %></td>
+        <td><%= check_box_tag 'completed', "1", false, id: "item-complete#{item.id}" %></td>
         <td><%= markdown item.body  %></td>
         <td><%= time_ago_in_words(item.created_at+1.week) %></td>
         <td><% if policy(item).edit? %>
