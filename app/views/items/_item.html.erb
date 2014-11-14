@@ -1,16 +1,18 @@
 
    <%= content_tag :div, class: 'media', id: "item-#{item.id}" do %>
 
+      <tr>
+        <td><%=  check_box_tag 'completed', "1", false, id: "item-#{item.id}" %></td>
+        <td><%= markdown item.body  %></td>
+        <td><%= time_ago_in_words(item.destruction_time) %></td>
+        <td><% if policy(item).edit? %>
+           <%= link_to "Edit", [item.list, item], method: :edit, remote: true %>
+        <% end %>
 
-    <div class="media-body">
+        <% if policy(item).destroy? %>
+          | <%= link_to "Delete", [item.list, item], method: :delete, remote: true %>
+        <% end %>
+        </td>
+      </tr>
 
-                <p><%= item.body  %>
-                <small>
-                    <em>Completed?</em>
-                </small>
-                  <% if policy(item).destroy? %>
-                    | <%= link_to "Delete", [item.list, item], method: :delete, remote: true %>
-                  <% end %>
-                </p>
-    </div>
   <% end %>

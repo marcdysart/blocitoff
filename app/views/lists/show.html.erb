@@ -1,19 +1,25 @@
-<h1><%= markdown @list.title %></h1>
 
-  <% if policy(@list).edit? %>
-    <%= link_to "Edit", edit_list_path(@list), class: 'btn btn-success' %>
-  <% end %>
-<h2> To-Do Items</h2>
   <div class='js-items'>
-      <% @list.items.each do |item| %>
-       <%= render  partial: 'items/item', locals: {item: item} %>
-       <% end %>
+      <table class="table table-hover">
+            <h1 class = "text-center"><%= markdown @list.title %>
+            <%= link_to "Edit List Name", edit_list_path(@list), class: 'btn btn-success' %>
+            <thead>
+              <tr>
+                <th>Complete</th>
+                <th>To Do Items</th>
+                <th>Time till Self-Destruction</th>
+                <th>Edit/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @list.items.each do |item| %>
+               <%= render  partial: 'items/item', locals: {item: item} %>
+               <% end %>
+            </tbody>
+          </table>
   </div>
 
   <div class="new-item">
-
-
-
   <%= form_for [@list, @list.items.new], remote: true do |f| %>
   <% if @list.errors.any? %>
     <div class="alert alert-danger">
