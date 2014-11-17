@@ -34,7 +34,8 @@ class ItemsController < ApplicationController
    end
 def complete
   @list = List.find(params[:id])
-  authorize @list
+  @item = Item.find(params[:id])
+  authorize @item
   if @list.update_attributes(item_params)
     flash[:notice] = "A To-Do Item was marked completed."
     redirect_to @list
@@ -51,11 +52,11 @@ end
   end
 
  def update
-     @list = List.find(params[:id])
-     authorize @list
-     if @list.update_attributes(item_params)
+     @item = Item.find(params[:id])
+     authorize @item
+     if @item.update_attributes(item_params)
        flash[:notice] = "To-Do List was updated."
-       redirect_to @list
+       redirect_to @item
      else
        flash[:error] = "There was an error saving the To-Do list. Please try again."
        render :edit
