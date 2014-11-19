@@ -11,13 +11,14 @@
   <% end %>
   <form class="form-inline" role="form">
     <div class="form-group">
-       <%= f.label :"Enter New Comment" %>
+       <%= f.label :"Enter New To-Do Item" %>
        <div class="row">
          <div class="col-xs-6">
-            <%= f.text_field :body, class: 'form-control', placeholder: "Enter Comment" %>
+            <%= f.text_field :body, class: 'form-control', placeholder: "Enter To-Do Item" %>
         </div>
         <div class="col-xs-2">
-          <%= f.submit "Save Comment", class: 'btn btn-default' %>
+          <%= f.submit "Save To-Do Item", class: 'btn btn-default' %>
+
         </div>
         <div class="col-xs-4">
         </div>

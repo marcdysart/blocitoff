@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  respond_to :html, :js
   def index
     @items = Item.all
     authorize @items
@@ -12,20 +13,23 @@ class ItemsController < ApplicationController
   def new
       @list = List.find(params[:list_id])
       @item = Item.new
+      @item = @list.item
       authorize @item
   end
 
   def create
      @list = List.find(params[:list_id])
      @items = @list.items
-     @item = current_user.lists.build(item_params)
+     @item = current_user.items.build(item_params)
+     @item.list = @list
+     @new_item = Item.new
      authorize @item
      if @item.save
        flash[:notice] = "To-Do Item was saved."
-       redirect_to @list
+
      else
        flash[:error] = "There was an error saving the To-Do Item. Please try again."
-       render :new
+
      end
    end
 
@@ -38,7 +42,7 @@ class ItemsController < ApplicationController
  def update
      @list = List.find(params[:id])
      authorize @list
-     if @list.update_attributes(list_params)
+     if @list.update_attributes(item_params)
        flash[:notice] = "To-Do List was updated."
        redirect_to @list
      else
@@ -73,7 +77,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title)
+    params.require(:item).permit(:body)
   end
 
 end
