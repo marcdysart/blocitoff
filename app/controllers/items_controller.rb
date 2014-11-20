@@ -32,24 +32,35 @@ class ItemsController < ApplicationController
 
      end
    end
+
 def complete
-  @list = List.find(params[:id])
-  @item = Item.find(params[:id])
-  authorize @item
-  if @list.update_attributes(item_params)
-    flash[:notice] = "A To-Do Item was marked completed."
-    redirect_to @list
+  @list = List.find(params[:list_id])
+  @item = Item.find(params[:item_id])
+  @item.completed = true
+    authorize @item
+  if @item.save
+    respond_with(@item) do |format|
+      format.html { render @item }
+    end
   else
-    flash[:error] = "There was an error marking the To-Do item complete. Please try again."
-    render :edit
+
   end
 end
 
-  def edit
-     @list = List.find(params[:id])
-     @item = Item.find(params[:id])
-     authorize @item
+def incomplete
+  @list = List.find(params[:list_id])
+  @item = Item.find(params[:item_id])
+  @item.completed = false
+    authorize @item
+  if @item.save
+    respond_with(@item) do |format|
+      format.html { render @item }
+    end
+  else
+
   end
+end
+
 
  def update
      @item = Item.find(params[:id])

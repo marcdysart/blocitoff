@@ -1,7 +1,7 @@
 
-   <%= content_tag :tr, class: 'media', id: "item-#{item.id}" do %>
+   <%= content_tag :tr, class: 'media item-incomplete', id: "item-#{item.id}" do %>
         <% if policy(item).complete? %>
-        <td><%= link_to([item.list, item], method: :patch, remote: true) do
+        <td><%= link_to(list_item_complete_item_path(item.list, item), method: :patch, remote: true) do
           check_box_tag 'completed', "1", false, id: "item-complete#{item.id}"
         end %></td>
         <% end %>

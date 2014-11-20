@@ -27,3 +27,13 @@
  input[type="checkbox"] {
   font-size: 50px;
 }
+
+.item-complete {
+  color: red;
+  text-decoration: line-through;
+}
+
+.item-incomplete {
+  color: black;
+  text-decoration: none;
+}

@@ -1,19 +1,5 @@
  <% if @item.destroyed? %>
-  //  $('#item-' +<%= @item.id %>).hide();
-  $('#item-' +<%= @item.id %>).remove();
-  $('#js-table tbody').append("<%= escape_javascript(render(@item)) %>");
-  $('#item-' +<%= @item.id %>).css({"color": "red", "text-decoration": "line-through"});
-
+  $('#item-' +<%= @item.id %>).hide();
  <% else %>
    $('#item-' +<%= @item.id %>).prepend("<div class='alert alert-error'><%= flash[:error] %></div>");
  <% end %>
-
-
-
-
-// $(function() {
-//
-//     $("h").click(function() {
-//         $(this).find('input:checkbox').parent().hide()
-//     });
-// });
