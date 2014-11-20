@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
      @items = @list.items
      @item = current_user.items.build(item_params)
      @item.list = @list
-     @new_item = Item.new
      authorize @item
      if @item.save
        flash[:notice] = "To-Do Item was saved."
