@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
      @items = @list.items
      @item = current_user.items.build(item_params)
      @item.list = @list
-     @new_item = Item.new
      authorize @item
      if @item.save
        flash[:notice] = "To-Do Item was saved."
@@ -33,18 +32,41 @@ class ItemsController < ApplicationController
      end
    end
 
-  def edit
-     @list = List.find(params[:id])
-     @item = Item.find(params[:id])
-     authorize @item
+def complete
+  @list = List.find(params[:list_id])
+  @item = Item.find(params[:item_id])
+  @item.completed = true
+    authorize @item
+  if @item.save
+    respond_with(@item) do |format|
+      format.html { render @item }
+    end
+  else
+
   end
+end
+
+def incomplete
+  @list = List.find(params[:list_id])
+  @item = Item.find(params[:item_id])
+  @item.completed = false
+    authorize @item
+  if @item.save
+    respond_with(@item) do |format|
+      format.html { render @item }
+    end
+  else
+
+  end
+end
+
 
  def update
-     @list = List.find(params[:id])
-     authorize @list
-     if @list.update_attributes(item_params)
+     @item = Item.find(params[:id])
+     authorize @item
+     if @item.update_attributes(item_params)
        flash[:notice] = "To-Do List was updated."
-       redirect_to @list
+       redirect_to @item
      else
        flash[:error] = "There was an error saving the To-Do list. Please try again."
        render :edit

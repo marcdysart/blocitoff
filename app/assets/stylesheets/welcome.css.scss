@@ -24,12 +24,14 @@
  }
 
  .jumbotron {
-  background: url(image_path('coffee.jpg')) no-repeat top center fixed;
+  background: url(image_path('coffee.jpg')) no-repeat;
+  background-position: center bottom;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: #f7f2ec !important
+  color: #f7f2ec !important;
+
 
 }
 

@@ -8,13 +8,22 @@
                 <th>Complete</th>
                 <th>To Do Items</th>
                 <th>Time till Self-Destruction</th>
-                <th>Edit/Delete</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               <% @list.items.each do |item| %>
-               <%= render  partial: 'items/item', locals: {item: item} %>
+                <% unless item.completed? %>
+                    <%= render  partial: 'items/item', locals: {item: item} %>
+                 <% end %>
                <% end %>
+
+              <% @list.items.each do |item| %>
+                <% if item.completed? %>
+                    <%= render  partial: 'items/completeditem', locals: {item: item} %>
+                 <% end %>
+               <% end %>
+
             </tbody>
           </table>
   </div>

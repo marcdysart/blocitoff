@@ -7,4 +7,6 @@ class Item < ActiveRecord::Base
   def destruction_time
       7.days+self.created_at
   end
+
+
 end

@@ -1,0 +1,16 @@
+<%= content_tag :tr, class: 'media item-complete', id: "item-#{item.id}" do %>
+     <% if policy(item).complete? %>
+     <td><%= link_to(list_item_incomplete_item_path(item.list, item), method: :patch, remote: true) do
+       check_box_tag 'completed', "1", true, id: "item-complete#{item.id}"
+     end %></td>
+     <% end %>
+     <td><%= markdown item.body  %></td>
+     <td><%= time_ago_in_words(item.created_at+1.week) %></td>
+     <td>
+     <% if policy(item).destroy? %>
+       <%= link_to "Delete", [item.list, item], method: :delete, remote: true %>
+     <% end %>
+     </td>
+
+
+<% end %>
